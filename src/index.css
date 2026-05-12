@@ -1,0 +1,418 @@
+@import "tailwindcss";
+
+/* =========================================================
+   CSS VARIABLES — kept for JS-driven features (bar charts)
+========================================================= */
+:root {
+  --brand-primary-color:   #0066cc;
+  --brand-secondary-color: #ff6b35;
+  --brand-third-color:     #004e99;
+  --brand-fourth-color:    #00a8e8;
+  --brand-accent-color:    #ffc300;
+  --bg-main:               #f5f7fa;
+  --bg-card:               #ffffff;
+  --text-primary-color:    #1a1a1a;
+  --text-secondary-color:  #555555;
+  --text-muted-color:      #888888;
+  --border-primary-color:  #dddddd;
+  --border-secondary-color:#eeeeee;
+  --border-muted-color:    #f0f0f0;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --transition: 0.3s ease;
+}
+
+[data-theme="dark"] {
+  --bg-main:               #1a1a1a;
+  --bg-card:               #2d2d2d;
+  --text-primary-color:    #ffffff;
+  --text-secondary-color:  #cccccc;
+  --text-muted-color:      #999999;
+  --border-primary-color:  #444444;
+  --border-secondary-color:#333333;
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+* {
+  @apply box-border;
+}
+
+body {
+  @apply m-0 p-0 font-sans leading-relaxed transition-all duration-300;
+  background: var(--bg-main);
+  color: var(--text-primary-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+h1 { @apply text-3xl font-bold mb-2 mt-0; }
+h2 { @apply text-2xl font-bold mb-2 mt-5; }
+h3 { @apply text-lg font-semibold mb-2 mt-4; }
+p  { @apply mb-2 text-sm; color: var(--text-secondary-color); }
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+button {
+  @apply px-5 py-2.5 border-0 rounded-md text-sm font-semibold cursor-pointer transition-all duration-300 text-white;
+  background: var(--brand-primary-color);
+}
+button:hover {
+  @apply -translate-y-0.5 shadow-lg;
+  background: var(--brand-third-color);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
+.lg-button       { @apply px-7 py-3.5 text-base; }
+.sm-button       { @apply px-4 py-2 text-xs; }
+.lg-button-full  { @apply px-7 py-3.5 text-base w-full mt-5; }
+
+/* =========================================================
+   INPUTS
+========================================================= */
+input, select, textarea {
+  @apply border rounded-md px-3 py-2.5 transition-all duration-300;
+  font-family: inherit;
+  border-color: var(--border-primary-color);
+  background: var(--bg-card);
+  color: var(--text-primary-color);
+}
+input:focus, select:focus, textarea:focus {
+  @apply outline-none;
+  border-color: var(--brand-primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+nav {
+  @apply flex justify-between items-center px-5 py-4 sticky top-0 z-50 flex-wrap gap-5;
+  background: var(--bg-card);
+  border-bottom: 2px solid var(--border-secondary-color);
+}
+nav > a {
+  @apply text-2xl font-bold no-underline transition-all duration-300;
+  color: var(--brand-primary-color);
+}
+nav > a:hover { color: var(--brand-secondary-color); }
+
+nav ul {
+  @apply flex list-none m-0 p-0 gap-8 items-center;
+}
+nav a {
+  @apply no-underline font-medium transition-all duration-300;
+  color: var(--text-primary-color);
+}
+nav a:hover { color: var(--brand-primary-color); }
+nav li { @apply relative; }
+
+nav .dropdown-menu {
+  @apply hidden absolute top-full left-0 list-none p-2.5 m-0 rounded-md min-w-48 shadow-lg;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary-color);
+}
+nav .dropdown:hover .dropdown-menu { @apply flex flex-col; }
+nav .dropdown-menu a { @apply block px-5 py-2.5; }
+nav .dropdown-menu a:hover { background: var(--border-muted-color); }
+
+.menu-toggle {
+  @apply hidden bg-transparent border-0 text-2xl cursor-pointer p-0;
+  color: var(--text-primary-color);
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+.page {
+  @apply px-5 py-5 mx-auto;
+  min-height: calc(100vh - 60px);
+  max-width: 1200px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+.hero {
+  @apply flex flex-col justify-center items-center text-center rounded-xl mb-10 gap-5 px-5 py-16;
+  background: linear-gradient(135deg, var(--brand-primary-color), var(--brand-fourth-color));
+  color: white;
+}
+.hero h1 { @apply text-5xl m-0; color: white; }
+.hero p  { @apply text-lg max-w-xl; color: rgba(255, 255, 255, 0.9); }
+
+/* =========================================================
+   CARDS
+========================================================= */
+.card-container {
+  @apply flex flex-wrap justify-center gap-5 my-9 mx-3;
+}
+.card {
+  @apply flex flex-col rounded-xl overflow-hidden shadow-md transition-all duration-300 border;
+  width: 280px;
+  background: var(--bg-card);
+  border-color: var(--border-secondary-color);
+}
+.card:hover {
+  @apply -translate-y-2;
+  box-shadow: 0 8px 20px rgba(0, 102, 204, 0.2);
+}
+.card img {
+  @apply w-full object-cover rounded-md m-3;
+  height: 200px;
+  width: calc(100% - 24px);
+}
+.card > div {
+  @apply p-3 flex-1 flex flex-col;
+}
+.card h3 { @apply mt-0 mb-2; }
+.card p  { @apply mb-3 flex-1; }
+.card button { @apply self-start; }
+
+/* =========================================================
+   FORMS
+========================================================= */
+.form-container {
+  @apply flex flex-col max-w-lg mx-auto my-8 p-8 rounded-xl shadow-md border;
+  background: var(--bg-card);
+  border-color: var(--border-secondary-color);
+}
+.form-group {
+  @apply mb-3 flex flex-col;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  @apply w-full text-sm;
+}
+.form-group textarea { @apply resize-y; min-height: 120px; }
+
+label {
+  @apply mb-1.5 font-semibold text-xs;
+  color: var(--text-primary-color);
+}
+.form-row {
+  @apply flex flex-row items-center gap-2 mb-3;
+}
+.form-row input { @apply w-auto; }
+.form-row label { @apply m-0; }
+
+/* =========================================================
+   TABLES
+========================================================= */
+.table-container {
+  @apply w-full overflow-x-auto mt-5 rounded-xl shadow-md;
+}
+table       { @apply w-full border-collapse; background: var(--bg-card); }
+table thead { color: white; background: var(--brand-primary-color); }
+table th    { @apply p-4 text-left font-semibold; }
+table td    { @apply px-4 py-3; border-bottom: 1px solid var(--border-secondary-color); }
+table tbody tr:nth-child(even) { background: var(--border-muted-color); }
+table tbody tr:hover           { background: rgba(0, 102, 204, 0.1); }
+table tbody tr:last-child td   { @apply border-b-0; }
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+  @apply px-5 py-10 mt-16;
+  background: var(--brand-third-color);
+  color: white;
+}
+.footer-container {
+  @apply flex justify-around max-w-screen-xl mx-auto gap-8 flex-wrap;
+}
+.footer-container > div { @apply flex flex-col gap-2.5 min-w-48; }
+footer a       { @apply no-underline transition-all duration-300; color: rgba(255,255,255,0.8); }
+footer a:hover { color: var(--brand-accent-color); }
+footer p       { @apply m-0 text-sm; color: rgba(255,255,255,0.8); }
+footer h2      { @apply text-sm font-bold m-0 mb-2.5; color: white; }
+.footer-bottom {
+  @apply text-center pt-5 m-0 text-xs;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+.search-container {
+  @apply flex gap-4 my-8 flex-wrap justify-center items-end;
+}
+.search-group { @apply flex flex-col gap-1; }
+
+/* =========================================================
+   SLIDER
+========================================================= */
+.slider-container {
+  @apply flex justify-center items-center flex-col my-8;
+}
+.slider-container img {
+  @apply hidden w-full object-cover rounded-xl shadow-lg;
+  max-width: 600px;
+  height: 400px;
+}
+.slider-container img.slide-active { @apply block; }
+.slider-nav { @apply flex gap-2.5 mt-4; }
+
+/* =========================================================
+   MODAL
+========================================================= */
+.modal {
+  @apply hidden fixed inset-0 z-50 justify-center items-center;
+  background: rgba(0,0,0,0.5);
+}
+.modal.active { @apply flex; }
+.modal-content {
+  @apply p-8 rounded-xl w-11/12 shadow-2xl overflow-y-auto;
+  background: var(--bg-card);
+  max-width: 500px;
+  max-height: 85vh;
+}
+.modal-header {
+  @apply flex justify-between items-center mb-5 pb-4;
+  border-bottom: 2px solid var(--border-secondary-color);
+}
+.modal-header h2 { @apply m-0; color: var(--brand-primary-color); }
+.close-btn {
+  @apply bg-transparent border-0 text-2xl cursor-pointer p-0 leading-none transition-all duration-300;
+  color: var(--text-muted-color);
+}
+.close-btn:hover { @apply transform-none shadow-none; color: var(--text-primary-color); }
+
+/* =========================================================
+   UTILITY
+========================================================= */
+.section-heading          { @apply mt-10; color: var(--text-primary-color); }
+.section-heading-centered { @apply mt-10 text-center; color: var(--text-primary-color); }
+.centered-heading         { @apply text-center; }
+.centered-muted-text      { @apply text-center; color: var(--text-muted-color); }
+.centered-paragraph       { @apply text-center mt-5; }
+.subtitle                 { @apply m-0; color: var(--text-secondary-color); }
+.link-text                { @apply no-underline font-semibold; color: var(--brand-primary-color); }
+
+.info-box {
+  @apply px-4 py-4 rounded-md my-5;
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border-left: 5px solid var(--brand-primary-color);
+  color: var(--text-primary-color);
+}
+.info-box strong { color: var(--brand-primary-color); }
+
+.stat-primary   { @apply mt-2.5 mb-2.5 font-bold; color: var(--brand-primary-color); }
+.stat-secondary { @apply mt-2.5 mb-2.5 font-bold; color: var(--brand-secondary-color); }
+.stat-accent    { @apply mt-2.5 mb-2.5 font-bold; color: var(--brand-accent-color); }
+.stat-tertiary  { @apply mt-2.5 mb-2.5 font-bold; color: var(--brand-third-color); }
+
+.form-buttons           { @apply flex gap-2.5 mt-5; }
+.form-buttons button    { @apply flex-1 py-3; }
+.submit-btn             { color: white; background: var(--brand-primary-color); }
+.submit-btn:hover       { background: var(--brand-third-color); }
+.cancel-btn             { color: var(--text-primary-color); background: var(--border-muted-color); }
+.cancel-btn:hover       { @apply transform-none shadow-none; background: var(--border-primary-color); }
+.close-modal-btn        { @apply w-full mt-5; }
+
+/* =========================================================
+   STOCK PAGE
+========================================================= */
+.stock-hero {
+  @apply text-white px-5 py-10 rounded-xl mb-10 text-center;
+  background: linear-gradient(135deg, #004e99, #00a8e8);
+}
+.stock-hero h1 { @apply m-0 text-4xl; color: white; }
+.stock-hero p  { color: rgba(255,255,255,0.9); @apply mt-2.5 mb-0; }
+
+.stock-stats {
+  @apply flex justify-around flex-wrap gap-5 my-8;
+}
+.stat-box {
+  @apply rounded-xl text-center shadow-md p-5;
+  min-width: 150px;
+  background: var(--bg-card);
+  border-left: 5px solid var(--brand-primary-color);
+}
+.stat-box h3          { @apply m-0 mb-2.5 text-sm; color: var(--text-muted-color); }
+.stat-box .stat-number{ @apply text-4xl font-bold mt-2.5 mb-2.5; color: var(--brand-primary-color); }
+.stat-label           { @apply text-xs; color: var(--text-secondary-color); }
+
+.action-buttons {
+  @apply flex gap-4 flex-wrap justify-center my-8;
+}
+.action-btn {
+  @apply flex items-center gap-2.5 px-6 py-4 border-0 rounded-lg cursor-pointer text-base font-semibold transition-all duration-300 text-white;
+}
+.action-btn:hover { @apply -translate-y-0.5 shadow-xl; }
+.btn-view   { background: #0066cc; }
+.btn-insert { background: #00aa44; }
+.btn-delete { background: #ff6b35; }
+.btn-chart  { @apply text-gray-900; background: #ffc300; }
+
+.stock-table-wrapper  { @apply overflow-x-auto my-5; }
+.stock-table          { @apply w-full border-collapse; background: var(--bg-card); }
+.stock-table th       { @apply px-4 py-3 text-left text-white; background: var(--brand-primary-color); }
+.stock-table td       { @apply px-4 py-2.5; border-bottom: 1px solid var(--border-secondary-color); }
+.stock-table tr:nth-child(even) { background: var(--border-muted-color); }
+.stock-table tr:hover           { background: rgba(0,102,204,0.08); }
+
+.filter-section { @apply flex gap-4 my-4 flex-wrap items-center; }
+.filter-item    { @apply flex gap-2 items-center; }
+.filter-item label { @apply m-0 font-semibold; }
+
+.action-icons         { @apply flex gap-1.5; }
+.action-icons button  { @apply px-2.5 py-1.5 text-xs; }
+.edit-btn             { background: #0066cc; }
+.delete-btn           { background: #ff6b35; }
+
+.stock-level  { @apply inline-block px-2.5 py-1 rounded-full text-xs font-semibold; }
+.level-high   { @apply bg-green-100 text-green-800; }
+.level-medium { @apply bg-yellow-100 text-yellow-800; }
+.level-low    { @apply bg-red-100 text-red-800; }
+
+.chart-container { @apply p-6 rounded-xl my-5 shadow-md; background: var(--bg-card); }
+.chart-title     { @apply text-center text-lg font-bold mb-5; color: var(--brand-primary-color); }
+.bar-chart       { @apply flex items-end justify-around gap-2.5 py-2.5; height: 250px; }
+.bar             { @apply flex flex-col items-center gap-1.5 flex-1; max-width: 90px; }
+.bar-fill {
+  @apply w-full rounded-t transition-all duration-300;
+  background: linear-gradient(180deg, var(--brand-primary-color), var(--brand-fourth-color));
+  height: var(--bar-height, 0%);
+}
+.bar-fill-value {
+  @apply w-full rounded-t transition-all duration-300;
+  background: linear-gradient(180deg, var(--brand-secondary-color), var(--brand-accent-color));
+  height: var(--bar-height, 0%);
+}
+.bar-label { @apply text-xs text-center font-semibold; color: var(--text-secondary-color); }
+.bar-value { @apply text-sm font-bold; color: var(--brand-primary-color); }
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+  .menu-toggle { @apply block; }
+
+  nav           { @apply flex-col gap-4; }
+  nav ul        { @apply hidden flex-col gap-4 w-full py-4; border-top: 1px solid var(--border-secondary-color); }
+  nav ul.open   { @apply flex; }
+  nav ul li     { @apply w-full; }
+  nav ul li a   { @apply block py-2.5; }
+
+  .hero         { @apply px-4 py-10; }
+  .hero h1      { @apply text-3xl; }
+  .card         { @apply w-full max-w-sm; }
+  .slider-container img { height: 250px; }
+  .action-buttons       { @apply flex-col; }
+  .action-btn           { @apply w-full justify-center; }
+}
+
+@media (max-width: 480px) {
+  .page     { @apply px-2.5; }
+  .card     { @apply w-full; }
+  .form-container { @apply p-5; }
+  h1        { @apply text-2xl; }
+  .slider-container img { height: 200px; }
+}

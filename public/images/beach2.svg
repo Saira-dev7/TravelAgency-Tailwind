@@ -1,0 +1,20 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="beach2Sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffc48e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="beach2Water" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0099ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="200" fill="url(#beach2Sky)"/>
+  <circle cx="250" cy="30" r="20" fill="#ffeb3b" opacity="0.95"/>
+  <ellipse cx="150" cy="145" rx="150" ry="55" fill="url(#beach2Water)"/>
+  <ellipse cx="150" cy="165" rx="150" ry="35" fill="#f4a460" opacity="0.85"/>
+  <rect x="80" y="120" width="8" height="30" fill="#8b4513"/>
+  <polygon points="80,120 70,100 90,100" fill="#90ee90" opacity="0.8"/>
+  <polygon points="140,130 130,110 150,110" fill="#90ee90" opacity="0.7"/>
+  <text x="150" y="190" font-size="14" font-weight="bold" fill="#0066cc" text-anchor="middle">Tropical Escape</text>
+</svg>

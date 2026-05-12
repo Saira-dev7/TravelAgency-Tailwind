@@ -1,0 +1,22 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="citySky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87ceeb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fff9c4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="200" fill="url(#citySky)"/>
+  <circle cx="270" cy="25" r="15" fill="#ffeb3b" opacity="0.95"/>
+  <rect x="30" y="80" width="35" height="80" fill="#696969"/>
+  <rect x="75" y="60" width="40" height="100" fill="#808080"/>
+  <rect x="130" y="40" width="35" height="120" fill="#696969"/>
+  <rect x="180" y="70" width="38" height="90" fill="#808080"/>
+  <rect x="235" y="90" width="40" height="70" fill="#696969"/>
+  <rect x="35" y="85" width="6" height="6" fill="#ffeb3b"/>
+  <rect x="48" y="85" width="6" height="6" fill="#ffeb3b"/>
+  <rect x="35" y="100" width="6" height="6" fill="#ffeb3b"/>
+  <rect x="80" y="65" width="7" height="7" fill="#ffeb3b"/>
+  <rect x="97" y="65" width="7" height="7" fill="#ffeb3b"/>
+  <rect x="135" y="45" width="6" height="6" fill="#ffeb3b"/>
+  <text x="150" y="190" font-size="14" font-weight="bold" fill="#0066cc" text-anchor="middle">City Exploration</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="adv2Sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffb3ba;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffba;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="200" fill="url(#adv2Sky)"/>
+  <circle cx="260" cy="25" r="17" fill="#ffd700" opacity="0.95"/>
+  <ellipse cx="80" cy="140" rx="25" ry="35" fill="#8b4513"/>
+  <ellipse cx="150" cy="150" rx="28" ry="38" fill="#a0826d"/>
+  <ellipse cx="220" cy="145" rx="25" ry="35" fill="#8b4513"/>
+  <circle cx="80" cy="110" r="12" fill="#ff6b35"/>
+  <circle cx="150" cy="115" r="12" fill="#ff6b35"/>
+  <circle cx="220" cy="112" r="12" fill="#ff6b35"/>
+  <text x="150" y="190" font-size="14" font-weight="bold" fill="#0066cc" text-anchor="middle">Safari Journey</text>
+</svg>
