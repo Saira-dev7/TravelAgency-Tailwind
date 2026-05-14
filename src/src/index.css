@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+/* =========================================================
+   ROOT — CSS variables for brand colours & dynamic values
+   (kept here because Tailwind cannot cover runtime values)
+========================================================= */
+:root {
+  --brand-primary:   #0066cc;
+  --brand-secondary: #ff6b35;
+  --brand-dark:      #004e99;
+  --brand-light:     #00a8e8;
+  --brand-accent:    #ffc300;
+  --bar-height:      0%;
+}
+
+/* =========================================================
+   BODY
+========================================================= */
+body {
+  @apply m-0 p-0 min-h-screen transition-colors duration-300;
+  @apply bg-slate-100 text-slate-900;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =========================================================
+   DARK THEME
+========================================================= */
+[data-theme="dark"] body {
+  @apply bg-slate-900 text-slate-100;
+}
+
+[data-theme="dark"] {
+  @apply bg-slate-900 text-slate-100;
+}
